@@ -1,6 +1,15 @@
-import 'dotenv/config';
-import { drizzle } from 'drizzle-orm/node-postgres';
+import "dotenv/config";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import * as schema from "./schema";
 
-const db = drizzle(process.env.DATABASE_URL!);
+const connectionString = process.env.DATABASE_URL!;
 
-export default db;
+console.log(connectionString)
+
+// For migrations (max 1 connection)
+export const migrationClient = postgres(connectionString, { max: 1 });
+
+// For queries (connection pool)
+const queryClient = postgres(connectionString);
+export const db = drizzle(queryClient, { schema });

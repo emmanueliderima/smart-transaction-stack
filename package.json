@@ -4,11 +4,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run src/index.ts"
+    "dev": "bun run src/index.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "bun drizzle/migrate.ts",
+    "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
     "@types/bs58": "^5.0.0",
     "@types/bun": "latest",
+    "@types/pg": "^8.20.0",
     "drizzle-kit": "^0.31.10"
   },
   "peerDependencies": {
@@ -22,6 +26,7 @@
     "drizzle-orm": "^0.45.2",
     "jito-ts": "^4.2.1",
     "openai": "^6.42.0",
+    "pg": "^8.21.0",
     "postgres": "^3.4.9"
   }
 }
